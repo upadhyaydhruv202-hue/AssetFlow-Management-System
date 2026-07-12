@@ -20,7 +20,26 @@ export default function Login() {
   const [trustDevice, setTrustDevice] = useState(false);
   const [devInfo, setDevInfo] = useState(null);
 
+  const handleGoogleSuccess = useCallback((data) => {
+    localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('refreshToken', data.refreshToken);
+    toast.success('Signed in with Google!');
+    window.location.href = '/dashboard';
+  }, []);
+
+  const handleGoogleError = useCallback((message) => {
+    toast.error(message);
+  }, []);
+
   if (!loading && user) return <Navigate to="/dashboard" replace />;
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+      </div>
+    );
+  }
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const fp = getDeviceFingerprint();
@@ -111,17 +130,6 @@ export default function Login() {
       setSubmitting(false);
     }
   };
-
-  const handleGoogleSuccess = useCallback((data) => {
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('refreshToken', data.refreshToken);
-    toast.success('Signed in with Google!');
-    window.location.href = '/dashboard';
-  }, []);
-
-  const handleGoogleError = useCallback((message) => {
-    toast.error(message);
-  }, []);
 
   const titles = { login: 'Sign In', signup: 'Create Account', forgot: 'Reset Password', magic: 'Magic Link', mfa: 'Verify Identity' };
 

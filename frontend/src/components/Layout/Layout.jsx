@@ -31,7 +31,13 @@ export default function Layout() {
 
 export function ProtectedRoute({ roles, children }) {
   const { user, loading, hasRole } = useAuth();
-  if (loading) return null;
+  if (loading) {
+    return (
+      <div className="flex h-40 items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+      </div>
+    );
+  }
   if (!user) return <Navigate to="/login" replace />;
   if (roles && !hasRole(...roles)) return <Navigate to="/dashboard" replace />;
   return children;

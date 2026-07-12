@@ -14,10 +14,11 @@ export const AuthProvider = ({ children }) => {
       return;
     }
     try {
-      const { data } = await api.get('/auth/me');
+      const { data } = await api.get('/auth/me', { timeout: 10000 });
       setUser(data.data.user);
     } catch {
       localStorage.clear();
+      setUser(null);
     } finally {
       setLoading(false);
     }
