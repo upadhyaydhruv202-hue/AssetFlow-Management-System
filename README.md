@@ -111,4 +111,45 @@ assetflow/
 
 MIT
 
+## Enterprise Extensions (v2.0)
 
+### Authentication & Security
+- Adaptive MFA (risk-based OTP via email)
+- Magic link login (`/magic-login?token=...`)
+- Passkey registration & login (browser-stored credential)
+- Company domain restriction (Admin → Security Settings)
+- Trusted device management
+- Suspicious login detection & security events
+
+### Dashboard
+- AI daily summary, smart recommendations, asset health widget
+- Role-based executive dashboard (Admin/Manager/Head/Employee)
+- Critical alerts banner, live 30s auto-refresh
+
+### Organization
+- Drag-and-drop org tree, approval matrix builder
+- CSV bulk import (employees, departments, assets, categories)
+- Batch asset reassignment, HRMS sync API stubs
+
+### Assets & Allocation
+- RFID field, AI image recognition (simulated), digital twin API
+- Dynamic health score, warranty timeline, immutable asset history
+- AI allocation recommendations, digital signatures, custody timeline
+
+### Bookings & Maintenance
+- AI alternative suggestions, smart waitlist, QR check-in
+- Google Calendar ICS export, no-show auto-release (cron)
+- Predictive maintenance, IoT sensor dashboard (simulated)
+- Spare parts inventory, MTTR analytics, SLA tracking
+
+### Audit & Reports
+- Blind audit mode, offline sync, QR verification, auto discrepancy reports
+- AI business insights, forecasting, department benchmarking, cost prediction
+
+### API Documentation
+- Swagger: `backend/docs/swagger.json`
+- Postman: `backend/docs/postman_collection.json`
+
+### New API Routes (prefix `/api`)
+- Auth: `/auth/mfa/verify`, `/auth/magic-link/*`, `/auth/passkey/*`, `/auth/devices`
+- Enterprise: `/ai/*`, `/organization/*`, `/assets/:id/twin`, `/maintenance/predictive`, `/reports/insights`, etc.
