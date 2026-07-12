@@ -1,0 +1,47 @@
+{
+  "info": {
+    "name": "AssetFlow Enterprise API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:5000/api" }, { "key": "token", "value": "" }],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        { "name": "Login", "request": { "method": "POST", "url": "{{baseUrl}}/auth/login", "body": { "mode": "raw", "raw": "{\"email\":\"admin@assetflow.com\",\"password\":\"Admin@123\"}" } } },
+        { "name": "MFA Verify", "request": { "method": "POST", "url": "{{baseUrl}}/auth/mfa/verify", "body": { "mode": "raw", "raw": "{\"userId\":\"\",\"code\":\"123456\"}" } } },
+        { "name": "Magic Link Request", "request": { "method": "POST", "url": "{{baseUrl}}/auth/magic-link/request", "body": { "mode": "raw", "raw": "{\"email\":\"employee@assetflow.com\"}" } } },
+        { "name": "Passkey Login", "request": { "method": "POST", "url": "{{baseUrl}}/auth/passkey/login", "body": { "mode": "raw", "raw": "{\"credentialId\":\"passkey-id\"}" } } }
+      ]
+    },
+    {
+      "name": "Dashboard & AI",
+      "item": [
+        { "name": "Dashboard", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/dashboard" } },
+        { "name": "AI Summary", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/ai/summary" } },
+        { "name": "Recommendations", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/ai/recommendations" } }
+      ]
+    },
+    {
+      "name": "Reports & Analytics",
+      "item": [
+        { "name": "Reports Overview", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports" } },
+        { "name": "Maintenance & Retirement Report", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/maintenance-retirement?page=1&limit=10" } },
+        { "name": "Maintenance Summary KPIs", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/maintenance-retirement/summary" } },
+        { "name": "Booking Heatmap", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/booking-heatmap" } },
+        { "name": "Export Maintenance CSV", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/export?type=maintenance-retirement&format=csv" } },
+        { "name": "Export Heatmap Excel", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/export?type=booking-heatmap&format=excel" } },
+        { "name": "Reports Insights", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/insights" } }
+      ]
+    },
+    {
+      "name": "Enterprise",
+      "item": [
+        { "name": "Digital Twin", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/assets/:id/twin" } },
+        { "name": "Bulk Import", "request": { "method": "POST", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/organization/import", "body": { "mode": "raw", "raw": "{\"entityType\":\"DEPARTMENTS\",\"csvContent\":\"name,code\\nIT,IT\"}" } } },
+        { "name": "MTTR Analytics", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/maintenance/mttr" } },
+        { "name": "Reports Insights", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/reports/insights" } }
+      ]
+    }
+  ]
+}

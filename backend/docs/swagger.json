@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "AssetFlow Enterprise API",
+    "version": "2.0.0",
+    "description": "Enterprise Asset & Resource Management System with AI and security extensions"
+  },
+  "servers": [{ "url": "http://localhost:5000/api" }],
+  "paths": {
+    "/health": { "get": { "summary": "Health check" } },
+    "/auth/login": { "post": { "summary": "Login with adaptive MFA" } },
+    "/auth/mfa/verify": { "post": { "summary": "Verify MFA OTP" } },
+    "/auth/magic-link/request": { "post": { "summary": "Request magic link" } },
+    "/auth/magic-link/verify": { "post": { "summary": "Verify magic link" } },
+    "/auth/passkey/login": { "post": { "summary": "Passkey login" } },
+    "/auth/passkey/register": { "post": { "summary": "Register passkey" } },
+    "/auth/devices": { "get": { "summary": "List trusted devices" } },
+    "/dashboard": { "get": { "summary": "Role-based dashboard with AI summary" } },
+    "/ai/summary": { "get": { "summary": "AI daily summary" } },
+    "/ai/recommendations": { "get": { "summary": "Smart recommendations" } },
+    "/assets/{id}/twin": { "get": { "summary": "Digital twin profile" } },
+    "/assets/health-overview": { "get": { "summary": "Asset health widget data" } },
+    "/allocations/recommendations": { "get": { "summary": "AI allocation recommendations" } },
+    "/bookings/alternatives": { "get": { "summary": "AI alternative resources" } },
+    "/bookings/{id}/check-in": { "post": { "summary": "QR check-in" } },
+    "/maintenance/predictive": { "get": { "summary": "Predictive maintenance list" } },
+    "/maintenance/mttr": { "get": { "summary": "MTTR analytics" } },
+    "/maintenance/sla-breaches": { "get": { "summary": "SLA breaches" } },
+    "/audits/{id}/discrepancy-report": { "get": { "summary": "Auto discrepancy report" } },
+    "/reports/insights": { "get": { "summary": "AI business insights" } },
+    "/reports/forecast": { "get": { "summary": "Predictive analytics" } },
+    "/reports/maintenance-retirement": { "get": { "summary": "Assets due for maintenance and near retirement report", "parameters": [{ "name": "page", "in": "query" }, { "name": "departmentId", "in": "query" }, { "name": "priority", "in": "query" }] } },
+    "/reports/maintenance-retirement/summary": { "get": { "summary": "Maintenance and retirement KPI summary" } },
+    "/reports/booking-heatmap": { "get": { "summary": "Resource booking heatmap analytics", "parameters": [{ "name": "dateFrom", "in": "query" }, { "name": "dateTo", "in": "query" }, { "name": "categoryId", "in": "query" }] } },
+    "/reports/export": { "get": { "summary": "Export reports (csv, excel, pdf)", "parameters": [{ "name": "type", "in": "query" }, { "name": "format", "in": "query" }] } },
+    "/organization/import": { "post": { "summary": "CSV bulk import" } },
+    "/organization/tree": { "get": { "summary": "Organization tree" } },
+    "/notifications/ai-summary": { "get": { "summary": "AI notification summary" } }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
+    }
+  }
+}
